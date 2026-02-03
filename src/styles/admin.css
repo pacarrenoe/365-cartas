@@ -1,0 +1,236 @@
+.admin-root {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* ===== LAYOUT ===== */
+.admin-root .admin-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.admin-root .admin-aside {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 24px;
+}
+
+.admin-root .admin-aside h2 {
+  font-size: 20px;
+  margin-bottom: 32px;
+  color: #fff;
+}
+
+/* ===== SIDEBAR BUTTONS ===== */
+.admin-root .sidebar button {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-root .sidebar button.active,
+.admin-root .sidebar button:hover {
+  background: #1f2937;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== CONTENT ===== */
+.admin-root .admin-top {
+  background: #ffffff;
+  padding: 20px 32px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-root .admin-top h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #111827;
+}
+
+.admin-root .admin-page {
+  padding: 32px;
+}
+
+/* ===== CARDS ===== */
+.admin-root .card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.admin-root .card strong {
+  color: #111827;
+}
+
+.admin-root .card p {
+  color: #374151;
+}
+
+/* ===== FORM ===== */
+.admin-root input,
+.admin-root textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
+
+/* ===== BUTTONS ===== */
+.admin-root button {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-root button:hover {
+  opacity: 0.9;
+}
+
+/* acciones */
+.admin-root .btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.admin-root .btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+
+/* agregar a admin.css */
+
+.admin-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-btn {
+  background: #9e9c9a;;
+  border: 1px solid #9e9c9a;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: rgb(121, 120, 120);
+  color: #000;
+}
+
+
+/* ===============================
+   MOBILE RESPONSIVE
+   =============================== */
+@media (max-width: 768px) {
+
+  /* Layout pasa a columna */
+  .admin-root .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar se vuelve top-bar */
+  .admin-root .admin-aside {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .admin-root .admin-aside h2 {
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* Sidebar buttons en fila */
+  .admin-root .sidebar {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  .admin-root .sidebar button {
+    margin: 0;
+    padding: 8px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Header compacto */
+  .admin-root .admin-top {
+    padding: 14px 16px;
+  }
+
+  .admin-root .admin-top h1 {
+    font-size: 18px;
+  }
+
+  .logout-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  /* Contenido */
+  .admin-root .admin-page {
+    padding: 16px;
+  }
+
+  /* Cards más compactas */
+  .admin-root .card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .admin-root .card p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Botones full width en móvil */
+  .admin-root .card .btn-primary,
+  .admin-root .card .btn-danger {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Formularios */
+  .admin-root input,
+  .admin-root textarea {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
+
+/* Extra: móviles muy chicos */
+@media (max-width: 420px) {
+  .admin-root .admin-aside h2 {
+    display: none;
+  }
+}

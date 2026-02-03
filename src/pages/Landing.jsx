@@ -5,6 +5,11 @@ import CartaDetalle from "../components/CartaDetalle";
 import LoaderCorazon from "../components/LoaderCorazon";
 import DedicatoriaModal from "../components/DedicatoriaModal";
 
+import "../styles/base.css";
+import "../styles/layout.css";
+import "../styles/cartas.css";
+
+
 /* ===================== */
 /* FECHA LOCAL SEGURA */
 /* ===================== */
