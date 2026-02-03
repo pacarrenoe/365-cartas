@@ -29,7 +29,7 @@ export default function CartaDetalle({ carta, onClose }) {
           className="modal-close"
           onClick={onClose}
         >
-          Cerrar 💌
+          Cerrar
         </button>
 
       </div>
