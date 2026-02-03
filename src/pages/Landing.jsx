@@ -1,97 +1,47 @@
 import { useEffect, useState } from "react";
-import { obtenerCartasPaginadas } from "../service/cartasService";
+import { obtenerCartas } from "../service/cartasService";
 import CartaCard from "../components/CartaCard";
 import CartaDetalle from "../components/CartaDetalle";
 import LoaderCorazon from "../components/LoaderCorazon";
 import DedicatoriaModal from "../components/DedicatoriaModal";
 
 /* ===================== */
-/* DEBUG FLAG */
-/* ===================== */
-
-const DEBUG_LOADER = false;
-
-/* ===================== */
 /* FECHA LOCAL SEGURA */
 /* ===================== */
-
 function hoyLocalISO() {
   const d = new Date();
-
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-
-  return `${yyyy}-${mm}-${dd}`;
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 }
 
 export default function Landing() {
   const [cartas, setCartas] = useState([]);
   const [seleccionada, setSeleccionada] = useState(null);
-  const [lastDoc, setLastDoc] = useState(null);
-
-  const [loading, setLoading] = useState(false);
-  const [loadingInicial, setLoadingInicial] = useState(true);
-  const [hayMas, setHayMas] = useState(true);
-
-  async function cargarMas() {
-    if (loading || !hayMas) return;
-
-    setLoading(true);
-
-    try {
-      const res = await obtenerCartasPaginadas(lastDoc);
-
-      setCartas(prev => {
-        const ids = new Set(prev.map(c => c.id));
-        const nuevas = res.cartas.filter(c => !ids.has(c.id));
-        return [...prev, ...nuevas];
-      });
-
-      setLastDoc(res.ultimoDoc);
-      setHayMas(res.hayMas);
-
-    } finally {
-      setLoading(false);
-      setLoadingInicial(false);
-    }
-  }
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!DEBUG_LOADER) {
-      cargarMas();
-    }
+    obtenerCartas()
+      .then(setCartas)
+      .finally(() => setLoading(false));
   }, []);
-
-  /* ===================== */
-  /* FECHA HOY */
-  /* ===================== */
 
   const hoyStr = hoyLocalISO();
 
   /* ===================== */
-  /* FILTRAR FUTURAS */
+  /* NO MOSTRAR FUTURAS */
   /* ===================== */
-
-  const cartasVisibles = cartas.filter(
-    c => c.fecha <= hoyStr
-  );
+  const visibles = cartas.filter(c => c.fecha <= hoyStr);
 
   /* ===================== */
-  /* DESTACADA */
+  /* CARTA DESTACADA */
   /* ===================== */
-
   const cartaHoy =
-    cartasVisibles.find(c => c.fecha === hoyStr)
-    ?? cartasVisibles[0]   // fallback elegante
+    visibles.find(c => c.fecha === hoyStr) ??
+    visibles[0]; // última escrita como fallback
 
   /* ===================== */
-  /* ANTERIORES */
+  /* RESTO */
   /* ===================== */
-
-  const anteriores = cartasVisibles.filter(
-    c => c.id !== cartaHoy?.id
-  );
+  const anteriores = visibles.filter(c => c.id !== cartaHoy?.id);
 
   return (
     <div className="page">
@@ -107,17 +57,10 @@ export default function Landing() {
           </p>
         </header>
 
-        {(loadingInicial || DEBUG_LOADER) && (
-          <LoaderCorazon />
-        )}
+        {loading && <LoaderCorazon />}
 
-        {!loadingInicial && !DEBUG_LOADER && (
+        {!loading && (
           <>
-
-            {/* ===================== */}
-            {/* CARTA DE HOY */}
-            {/* ===================== */}
-
             {cartaHoy && (
               <>
                 <div className="section-title">
@@ -131,10 +74,6 @@ export default function Landing() {
                 />
               </>
             )}
-
-            {/* ===================== */}
-            {/* ANTERIORES */}
-            {/* ===================== */}
 
             {anteriores.length > 0 && (
               <>
@@ -153,7 +92,6 @@ export default function Landing() {
                 </div>
               </>
             )}
-
           </>
         )}
 
