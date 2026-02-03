@@ -1,0 +1,239 @@
+/* GRID */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+/* CARD */
+
+.card {
+  background: #ffffffd9;
+  border-radius: 18px;
+  padding: 18px;
+
+  cursor: pointer;
+
+  transition: all .25s ease;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 26px rgba(0,0,0,0.12);
+}
+
+/* Carta de hoy destacada */
+
+.card-hoy {
+  background: linear-gradient(
+    180deg,
+    #fff7f7,
+    #ffeaea
+  );
+  border: 1px solid #ffdada;
+}
+
+/* Texto card */
+
+.card-dia {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.card-fecha {
+  font-size: 13px;
+  opacity: .6;
+  margin-bottom: 10px;
+}
+
+.card-texto {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* MODAL */
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,.35);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  z-index: 100;
+}
+
+.modal {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 26px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  margin-top: 24px;
+  border: none;
+  background: #f1e4d6;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  display: block;          
+  margin-left: auto;      
+  margin-right: auto; 
+}
+
+
+.load-more {
+  display: block;
+  margin: 32px auto 0;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg,#ffb7c5,#ffcfd8);
+  color: #5a2e2e;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  transition: 0.2s;
+}
+
+.load-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.16);
+}
+
+
+/* ================= */
+/* LOADER CORAZÓN */
+/* ================= */
+
+.loader-back {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: backFade 1.2s infinite;
+}
+
+.loader-heart {
+  width: 60px;
+  height: 60px;
+  background: #ff4b4b;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: beat 1s infinite;
+}
+
+.loader-heart::before,
+.loader-heart::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #ff4b4b;
+  border-radius: 50%;
+}
+
+.loader-heart::before {
+  top: -28px;
+  left: 0;
+}
+
+.loader-heart::after {
+  left: 28px;
+  top: 0;
+}
+
+@keyframes beat {
+  0% { transform: scale(1) rotate(-45deg); }
+  50% { transform: scale(0.7) rotate(-45deg); }
+  100% { transform: scale(1) rotate(-45deg); }
+}
+
+@keyframes backFade {
+  50% { background: #fff0f0; }
+}
+
+
+.modal.romantic {
+  background: #fff9f7;
+  border: 1px solid #ffe1e6;
+  box-shadow:
+    0 24px 60px rgba(120,40,60,0.25);
+}
+
+.modal.romantic h2 {
+  text-align: center;
+}
+
+.modal.romantic p {
+  margin-top: 12px;
+  line-height: 1.6;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.modal.romantic p.center {
+  text-align: center;
+  margin-top: 0;
+}
+
+
+@media (max-width: 520px) {
+  .modal {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+
+  .modal.romantic p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+}
+
+
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #f3c6cc;
+  border-radius: 10px;
+}

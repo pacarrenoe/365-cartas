@@ -1,0 +1,43 @@
+.page {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container,
+.app {
+  width: 100%;
+  max-width: 860px;
+  padding: 10px 15px;
+}
+
+/* iPhone safe area */
+
+@supports(padding:max(0px)) {
+  .container,
+  .app {
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 44px;
+  letter-spacing: 1px;
+}
+
+.header p {
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.section-title {
+  font-size: 22px;
+  margin: 30px 0 16px;
+}
