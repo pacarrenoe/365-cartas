@@ -21,7 +21,7 @@ export default function Login() {
   return (
     <div className="login-wrapper">
       <div className="login-card">
-        <h1>Login Admin 💛</h1>
+        <h1>Login Admin</h1>
 
         <input
           placeholder="Email"

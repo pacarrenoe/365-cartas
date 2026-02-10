@@ -234,3 +234,125 @@
     display: none;
   }
 }
+
+.card-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .card-actions {
+    justify-content: stretch;
+  }
+
+  .card-actions button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px; /* evita zoom en iOS */
+  }
+}
+
+
+
+/* ===============================
+   LOGIN
+   =============================== */
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+  padding: 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-card h1 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+}
+
+/* Error */
+.login-card p {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Botón */
+.login-card button {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #0b13f5;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.login-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.login-card button:active {
+  transform: translateY(0);
+}
+
+/* ===============================
+   MOBILE / IPHONE FRIENDLY
+   =============================== */
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  .login-card h1 {
+    font-size: 20px;
+  }
+
+  .login-card input {
+    font-size: 16px; /* evita zoom en iOS */
+  }
+
+  .login-card button {
+    font-size: 16px;
+  }
+}
