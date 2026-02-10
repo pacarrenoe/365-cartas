@@ -5,26 +5,33 @@ export default function CrearCarta({ onCreate }) {
   const [texto, setTexto] = useState("");
 
   return (
-    <div className="card">
-      <h2>Nueva carta</h2>
+    <>
+      <div className="card">
+        <h2>Nueva carta</h2>
 
-      <input
-        type="number"
-        placeholder="Día"
-        value={dia}
-        onChange={e => setDia(e.target.value)}
-      />
+        <input
+          type="number"
+          placeholder="Día"
+          value={dia}
+          onChange={e => setDia(e.target.value)}
+        />
 
-      <textarea
-        rows={6}
-        placeholder="Texto de la carta"
-        value={texto}
-        onChange={e => setTexto(e.target.value)}
-      />
+        <textarea
+          rows={6}
+          placeholder="Texto de la carta"
+          value={texto}
+          onChange={e => setTexto(e.target.value)}
+        />
+      </div>
 
-      <button onClick={() => onCreate(dia, texto)}>
-        Guardar
-      </button>
-    </div>
+      <div className="form-actions">
+        <button
+          className="btn-primary"
+          onClick={() => onCreate(dia, texto)}
+        >
+          Guardar
+        </button>
+      </div>
+    </>
   );
 }
