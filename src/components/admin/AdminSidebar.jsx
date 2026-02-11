@@ -8,6 +8,14 @@ export default function AdminSidebar({ active, onChange }) {
       <button onClick={() => onChange("list")} className={active==="list" ? "active" : ""}>
         📋 Listar cartas
       </button>
+      
+      <button onClick={() => onChange("cupon-create")}>
+        🎟 Crear cupón
+      </button>
+
+      <button onClick={() => onChange("cupon-list")}>
+        🎫 Listar cupones
+      </button>
     </nav>
   );
 }

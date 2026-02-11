@@ -9,5 +9,9 @@ export default function Admin() {
     return <Login />;
   }
 
-  return <AdminPanel />;
+  return <div className="admin-root">
+        <AdminPanel />
+      </div>;
+
+  
 }

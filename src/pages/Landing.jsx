@@ -50,62 +50,69 @@ export default function Landing() {
 
   return (
     <div className="page">
-      <div className="container">
+      <div className="app">
+        <div className="page">
+              
+              <div className="container">
 
-        <DedicatoriaModal />
+                <DedicatoriaModal />
 
-        <header className="header">
-          <h1>Mi Nachi 💖</h1>
-          <p>
-            Un diario digital de todo lo que siento por ti,
-            escrito con amor y un poco de código.
-          </p>
-        </header>
+                <header className="header">
+                  <h1>Mi Nachi 💖</h1>
+                  <p>
+                    Un diario digital de todo lo que siento por ti,
+                    escrito con amor y un poco de código.
+                  </p>
+                </header>
 
-        {loading && <LoaderCorazon />}
+                {loading && <LoaderCorazon />}
 
-        {!loading && (
-          <>
-            {cartaHoy && (
-              <>
-                <div className="section-title">
-                  💌 Hoy siento y pienso...
-                </div>
+                {!loading && (
+                  <>
+                    {cartaHoy && (
+                      <>
+                        <div className="section-title">
+                          💌 Hoy siento y pienso...
+                        </div>
 
-                <CartaCard
-                  carta={cartaHoy}
-                  onClick={setSeleccionada}
-                  destacada
+                        <CartaCard
+                          carta={cartaHoy}
+                          onClick={setSeleccionada}
+                          destacada
+                        />
+                      </>
+                    )}
+
+                    {anteriores.length > 0 && (
+                      <>
+                        <div className="section-title">
+                          Hace unos días pensé y sentí...
+                        </div>
+
+                        <div className="grid">
+                          {anteriores.map(c => (
+                            <CartaCard
+                              key={c.id}
+                              carta={c}
+                              onClick={setSeleccionada}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+
+                <CartaDetalle
+                  carta={seleccionada}
+                  onClose={() => setSeleccionada(null)}
                 />
-              </>
-            )}
 
-            {anteriores.length > 0 && (
-              <>
-                <div className="section-title">
-                  Hace unos días pensé y sentí...
-                </div>
-
-                <div className="grid">
-                  {anteriores.map(c => (
-                    <CartaCard
-                      key={c.id}
-                      carta={c}
-                      onClick={setSeleccionada}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        )}
-
-        <CartaDetalle
-          carta={seleccionada}
-          onClose={() => setSeleccionada(null)}
-        />
-
+              </div>
+            </div>
       </div>
+      
     </div>
+    
   );
 }

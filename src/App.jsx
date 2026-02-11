@@ -1,22 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Landing from "./pages/Landing";
 import Admin from "./pages/Admin";
+import Cupon from "./pages/Cupon";
+import Escanea from "./pages/Escanea";
 
 export default function App() {
-  const isAdmin = window.location.pathname.startsWith("/admin");
-
-  if (isAdmin) {
-    return (
-      <div className="admin-root">
-        <Admin />
-      </div>
-    );
-  }
-
   return (
-    <div className="page">
-      <div className="app">
-        <Landing />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/admin/*" element={<Admin />} />
+        <Route path="/cupon/:codigo" element={<Cupon />} />
+        <Route path="/escanea" element={<Escanea />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
