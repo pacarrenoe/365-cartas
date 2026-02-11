@@ -1,0 +1,232 @@
+/* ===============================
+   SECCIÓN CUPÓN EN LANDING
+================================= */
+
+.sorpresa-video {
+  margin-top: 20px;
+}
+
+.cupon-section {
+  border-radius: 16px;
+  text-align: center;
+}
+
+.cupon-section p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #4b3a2f;
+}
+
+.cupon-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid #d7c5b3;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cupon-btn:hover {
+  background: #efe4d8;
+}
+
+/* ===============================
+   MODAL BASE
+================================= */
+
+.cupon-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.cupon-modal {
+  background: #fff;
+  width: 90%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: fadeInScale 0.3s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cupon-modal h2,
+.cupon-modal h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.cupon-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d7c5b3;
+  margin-top: 10px;
+}
+
+.cupon-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.cupon-primary {
+  background: #d8bfa7;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.cupon-primary:hover {
+  background: #c8a98c;
+}
+
+.cupon-secondary {
+  background: transparent;
+  border: 1px solid #d7c5b3;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cupon-secondary:hover {
+  background: #f2e8dc;
+}
+
+/* ===============================
+   MODAL SORPRESA
+================================= */
+
+.sorpresa-titulo {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #5c4b3b;
+}
+
+.sorpresa-mensaje {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+
+/* ===============================
+   ADMIN - CREAR CUPÓN
+================================= */
+
+.crear-cupon-wrapper {
+  max-width: 520px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.crear-cupon-title {
+  margin-bottom: 20px;
+  color: #5c4b3b;
+}
+
+.crear-cupon-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.crear-cupon-input,
+.crear-cupon-textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2d6c8;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+.crear-cupon-input:focus,
+.crear-cupon-textarea:focus {
+  outline: none;
+  border-color: #c8a98c;
+}
+
+.crear-cupon-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.crear-cupon-btn {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #4c6bf7;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.crear-cupon-btn:hover {
+  background: rgb(22, 45, 109);
+}
+
+.crear-cupon-btn.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.crear-cupon-qr {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f0e7dd;
+  text-align: center;
+}
+
+.crear-cupon-qr h4 {
+  margin-bottom: 15px;
+  color: #5c4b3b;
+}
+
+
+.cupon-player-wrapper {
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.cupon-sorpresa-titulo {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #6b4c3b;
+}
+
+.cupon-sorpresa-mensaje {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #5a4637;
+}
+
+
+.qr-reader {
+  margin-top: 20px;
+}

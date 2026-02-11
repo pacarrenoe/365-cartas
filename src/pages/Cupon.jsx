@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import YouTube from "react-youtube";
 import { obtenerCuponPorCodigo } from "../service/cuponesService";
 import LoaderCorazon from "../components/LoaderCorazon";
 
@@ -26,17 +27,36 @@ export default function Cupon() {
     );
   }
 
+  const opts = {
+    width: "100%",
+    height: "250",
+    playerVars: {
+      autoplay: 1,
+      controls: 1
+    }
+  };
+
   return (
     <div className="page">
-      <div className="container">
-        <h1>{cupon.titulo}</h1>
-        <p>{cupon.mensaje}</p>
+      <div className="container cupon-page">
 
-        {cupon.musica && (
-          <audio controls autoPlay>
-            <source src={cupon.musica} type="audio/mpeg" />
-          </audio>
+        <h1 className="cupon-page-title">
+          {cupon.titulo}
+        </h1>
+
+        <p className="cupon-page-message">
+          {cupon.mensaje}
+        </p>
+
+        {cupon.youtubeId && (
+          <div className="cupon-page-player">
+            <YouTube
+              videoId={cupon.youtubeId}
+              opts={opts}
+            />
+          </div>
         )}
+
       </div>
     </div>
   );
