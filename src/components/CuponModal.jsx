@@ -26,8 +26,15 @@ export default function CuponModal({ visible, onClose, onSuccess }) {
         html5QrCode.stop();
         setEscaneando(false);
 
-        const partes = decodedText.split("/");
-        const codigoDetectado = partes[partes.length - 1];
+        try {
+          const url = new URL(decodedText.trim());
+          const partes = url.pathname.split("/");
+          const codigoDetectado = partes[partes.length - 1].trim();
+
+          buscarCupon(codigoDetectado);
+        } catch {
+          buscarCupon(decodedText.trim());
+}
 
         buscarCupon(codigoDetectado);
       },

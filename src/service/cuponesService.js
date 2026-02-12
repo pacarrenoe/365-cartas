@@ -38,7 +38,8 @@ export async function obtenerCupones() {
 /* 🔹 OBTENER POR CODIGO */
 /* ========================= */
 export async function obtenerCuponPorCodigo(codigo) {
-  const q = query(coleccion, where("codigo", "==", codigo));
+  const limpio = codigo.trim();
+  const q = query(coleccion, where("codigo", "==", limpio));
   const snapshot = await getDocs(q);
 
   if (snapshot.empty) return null;
