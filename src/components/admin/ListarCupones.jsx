@@ -54,7 +54,7 @@ export default function ListarCupones({ cupones, onDelete }) {
               <div style={{ margin: "15px 0" }}>
                 <QRCodeCanvas
                   id={`qr-${c.codigo}`}
-                  value={url}
+                  value={c.codigo}
                   size={150}
                 />
               </div>
