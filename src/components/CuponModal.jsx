@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { obtenerCuponPorCodigo } from "../service/cuponesService";
 import toast from "react-hot-toast";
@@ -8,41 +8,63 @@ export default function CuponModal({ visible, onClose, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [escaneando, setEscaneando] = useState(false);
 
-  const qrRef = useRef(null);
   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
     if (!escaneando) return;
 
-    const html5QrCode = new Html5Qrcode("reader");
+    let html5QrCode;
+    let scannerActivo = true;
 
-    html5QrCode.start(
-      { facingMode: "environment" },
-      {
-        fps: 10,
-        qrbox: 250
-      },
-      (decodedText) => {
-        html5QrCode.stop();
+    const iniciarScanner = async () => {
+      try {
+        html5QrCode = new Html5Qrcode("reader");
+
+        await html5QrCode.start(
+          { facingMode: "environment" },
+          {
+            fps: 10,
+            qrbox: 250
+          },
+          async (decodedText) => {
+            if (!scannerActivo) return;
+
+            scannerActivo = false;
+
+            try {
+              await html5QrCode.stop();
+              await html5QrCode.clear();
+            } catch (e) {
+              console.log("Scanner ya estaba detenido");
+            }
+
+            setEscaneando(false);
+
+            let codigoDetectado = decodedText.trim();
+
+            try {
+              const url = new URL(decodedText.trim());
+              const partes = url.pathname.split("/");
+              codigoDetectado = partes.pop().trim();
+            } catch {
+              // No era URL, usamos texto directo
+            }
+
+            buscarCupon(codigoDetectado);
+          }
+        );
+
+      } catch (err) {
+        console.error("Error iniciando cámara:", err);
+        toast.error("No se pudo acceder a la cámara 📷");
         setEscaneando(false);
+      }
+    };
 
-        try {
-          const url = new URL(decodedText.trim());
-          const partes = url.pathname.split("/");
-          const codigoDetectado = partes[partes.length - 1].trim();
-
-          buscarCupon(codigoDetectado);
-        } catch {
-          buscarCupon(decodedText.trim());
-}
-
-        buscarCupon(codigoDetectado);
-      },
-      (error) => {}
-    );
+    iniciarScanner();
 
     return () => {
-      html5QrCode.stop().catch(() => {});
+      scannerActivo = false;
     };
 
   }, [escaneando]);
