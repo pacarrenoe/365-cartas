@@ -29,10 +29,6 @@ export default function AdminLogin() {
 
     return <main className="admin-login">
         <section className="admin-login__card" aria-labelledby="login-title">
-            <div className="admin-login__brand" aria-hidden="true">
-                <span className="admin-login__spark">♥</span>
-                <span className="admin-login__heart">♡</span>
-            </div>
             <h1 id="login-title">Nuestras Cartas</h1>
             <p className="admin-login__subtitle">Un espacio solo nuestro, donde<br/>guardamos todo lo que nos hace únicos.</p>
 
