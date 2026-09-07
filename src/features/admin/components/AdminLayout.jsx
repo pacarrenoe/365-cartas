@@ -1,4 +1,4 @@
-import { useAuth } from "../../store/AuthContext";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function AdminLayout({ sidebar, children }) {
   const { logout } = useAuth();

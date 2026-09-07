@@ -1,111 +1,59 @@
-import { useEffect, useState } from "react";
-import { obtenerCartas } from "../service/cartasService";
-import CartaCard from "../components/CartaCard";
-import CartaDetalle from "../components/CartaDetalle";
-import LoaderCorazon from "../components/LoaderCorazon";
-import DedicatoriaModal from "../components/DedicatoriaModal";
+import { useEffect, useMemo, useState } from "react";
+import PageLayout from "../components/layout/PageLayout";
+import DedicationModal from "../features/letters/components/DedicationModal";
+import HeartLoader from "../features/letters/components/HeartLoader";
+import LetterDetailModal from "../features/letters/components/LetterDetailModal";
+import LettersBanner from "../features/letters/components/LettersBanner";
+import LettersBody from "../features/letters/components/LettersBody";
+import { getLocalISODate } from "../features/letters/utils/date";
+import { obtenerCartas } from "../services/cartasService";
 
 import "../styles/base.css";
 import "../styles/layout.css";
 import "../styles/cartas.css";
 
-
-/* ===================== */
-/* FECHA LOCAL SEGURA */
-/* ===================== */
-function hoyLocalISO() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-}
-
 export default function Landing() {
-  const [cartas, setCartas] = useState([]);
-  const [seleccionada, setSeleccionada] = useState(null);
+  const [letters, setLetters] = useState([]);
+  const [selectedLetter, setSelectedLetter] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     obtenerCartas()
-      .then(setCartas)
+      .then(setLetters)
       .finally(() => setLoading(false));
   }, []);
 
-  const hoyStr = hoyLocalISO();
+  const { currentLetter, previousLetters } = useMemo(() => {
+    const today = getLocalISODate();
+    const visibleLetters = letters.filter((letter) => letter.fecha <= today);
+    const current =
+      visibleLetters.find((letter) => letter.fecha === today) ?? visibleLetters[0];
 
-  /* ===================== */
-  /* NO MOSTRAR FUTURAS */
-  /* ===================== */
-  const visibles = cartas.filter(c => c.fecha <= hoyStr);
-
-  /* ===================== */
-  /* CARTA DESTACADA */
-  /* ===================== */
-  const cartaHoy =
-    visibles.find(c => c.fecha === hoyStr) ??
-    visibles[0]; // última escrita como fallback
-
-  /* ===================== */
-  /* RESTO */
-  /* ===================== */
-  const anteriores = visibles.filter(c => c.id !== cartaHoy?.id);
+    return {
+      currentLetter: current,
+      previousLetters: visibleLetters.filter((letter) => letter.id !== current?.id),
+    };
+  }, [letters]);
 
   return (
-    <div className="page">
-      <div className="container">
+    <PageLayout>
+      <DedicationModal />
+      <LettersBanner />
 
-        <DedicatoriaModal />
-
-        <header className="header">
-          <h1>Mi Nachi 💖</h1>
-          <p>
-            Un diario digital de todo lo que siento por ti,
-            escrito con amor y un poco de código.
-          </p>
-        </header>
-
-        {loading && <LoaderCorazon />}
-
-        {!loading && (
-          <>
-            {cartaHoy && (
-              <>
-                <div className="section-title">
-                  💌 Hoy siento y pienso...
-                </div>
-
-                <CartaCard
-                  carta={cartaHoy}
-                  onClick={setSeleccionada}
-                  destacada
-                />
-              </>
-            )}
-
-            {anteriores.length > 0 && (
-              <>
-                <div className="section-title">
-                  Hace unos días pensé y sentí...
-                </div>
-
-                <div className="grid">
-                  {anteriores.map(c => (
-                    <CartaCard
-                      key={c.id}
-                      carta={c}
-                      onClick={setSeleccionada}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        )}
-
-        <CartaDetalle
-          carta={seleccionada}
-          onClose={() => setSeleccionada(null)}
+      {loading ? (
+        <HeartLoader />
+      ) : (
+        <LettersBody
+          currentLetter={currentLetter}
+          previousLetters={previousLetters}
+          onSelect={setSelectedLetter}
         />
+      )}
 
-      </div>
-    </div>
+      <LetterDetailModal
+        letter={selectedLetter}
+        onClose={() => setSelectedLetter(null)}
+      />
+    </PageLayout>
   );
 }

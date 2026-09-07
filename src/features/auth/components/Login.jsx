@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { login as loginService } from "../service/authService";
-import { useAuth } from "../store/AuthContext";
-import "../styles/admin.css";
+import { login as loginService } from "../../../services/authService";
+import { useAuth } from "../../../hooks/useAuth";
+import "../../../styles/admin.css";
 
 export default function Login() {
   const { login } = useAuth();

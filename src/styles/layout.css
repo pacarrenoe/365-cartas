@@ -27,6 +27,14 @@
   margin-bottom: 40px;
 }
 
+.letters-body {
+  width: 100%;
+}
+
+.letters-section + .letters-section {
+  margin-top: 30px;
+}
+
 .header h1 {
   font-size: 44px;
   letter-spacing: 1px;
