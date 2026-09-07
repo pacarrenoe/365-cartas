@@ -1,13 +1,9 @@
-import { useAuth } from "../store/AuthContext";
-import Login from "../components/Login";
-import AdminPanel from "../components/AdminPanel";
+import { useAuth } from "../hooks/useAuth";
+import AdminPanel from "../features/admin/components/AdminPanel";
+import Login from "../features/auth/components/Login";
 
 export default function Admin() {
   const { token } = useAuth();
 
-  if (!token) {
-    return <Login />;
-  }
-
-  return <AdminPanel />;
+  return <div className="admin-root">{token ? <AdminPanel /> : <Login />}</div>;
 }

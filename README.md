@@ -1,16 +1,34 @@
-# React + Vite
+# 365 Cartas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Diario digital construido con React, Vite y Firebase.
 
-Currently, two official plugins are available:
+## Arquitectura
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El código de `src` se organiza por responsabilidad:
 
-## React Compiler
+```text
+src/
+├── components/
+│   ├── layout/       # Estructuras visuales compartidas
+│   └── ui/           # Controles reutilizables (botones, etc.)
+├── context/          # Proveedores de contexto global
+├── features/
+│   ├── admin/        # Panel y componentes de administración
+│   ├── auth/         # Interfaz de autenticación
+│   └── letters/      # Banner, cuerpo, secciones, cartas y modales
+├── hooks/            # Hooks compartidos
+├── pages/            # Composición de cada pantalla
+├── services/         # Acceso a Firebase y APIs
+└── styles/           # Estilos globales y por área
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Las páginas solo coordinan datos y componen *features*. Cada feature contiene
+sus componentes específicos, mientras que los elementos genéricos viven en
+`components/ui` o `components/layout`.
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `yarn dev`: inicia el servidor de desarrollo.
+- `yarn build`: genera el paquete de producción.
+- `yarn lint`: ejecuta las validaciones estáticas.
+- `yarn preview`: sirve localmente el paquete de producción.

@@ -1,11 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
+import { AuthContext } from "./authContext";
 
-const AuthContext = createContext();
-
-export function AuthProvider({ children }) {
-  const [token, setToken] = useState(
-    sessionStorage.getItem("token")
-  );
+export default function AuthProvider({ children }) {
+  const [token, setToken] = useState(() => sessionStorage.getItem("token"));
 
   const login = (newToken) => {
     sessionStorage.setItem("token", newToken);
@@ -23,5 +20,3 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-
-export const useAuth = () => useContext(AuthContext);

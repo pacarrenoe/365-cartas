@@ -11,14 +11,27 @@
 .card {
   background: #ffffffd9;
   border-radius: 18px;
-  padding: 18px;
-
-  cursor: pointer;
-
   transition: all .25s ease;
 
   box-shadow:
     0 6px 18px rgba(0,0,0,0.08);
+}
+
+.letter-card-button {
+  width: 100%;
+  padding: 18px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.letter-card-button:focus-visible {
+  border-radius: 18px;
+  outline: 3px solid #d96d82;
+  outline-offset: 3px;
 }
 
 .card:hover {
@@ -41,18 +54,21 @@
 /* Texto card */
 
 .card-dia {
+  display: block;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
 .card-fecha {
+  display: block;
   font-size: 13px;
   opacity: .6;
   margin-bottom: 10px;
 }
 
 .card-texto {
+  display: block;
   font-size: 15px;
   line-height: 1.5;
 }
@@ -82,8 +98,10 @@
   animation: modalIn .25s ease;
 }
 
-.modal-texto{
-  inline-size: 1;
+.modal-texto {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
 }
 
 

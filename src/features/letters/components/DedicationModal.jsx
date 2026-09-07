@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Button from "../../../components/ui/Button";
+import { getLocalISODate } from "../utils/date";
 
 /* ===================== */
 /* RANGO FECHAS */
@@ -7,34 +9,24 @@ import { useEffect, useState } from "react";
 const FECHA_INICIO = "2026-02-02";
 const FECHA_FIN    = "2026-02-06";
 
-function hoyLocalISO() {
-  const d = new Date();
-
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-
-  return `${yyyy}-${mm}-${dd}`;
-}
-
 export default function DedicatoriaModal() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const hoy = hoyLocalISO();
-
-    if (hoy >= FECHA_INICIO && hoy <= FECHA_FIN) {
-      setVisible(true);
-    }
-  }, []);
+  const [visible, setVisible] = useState(() => {
+    const today = getLocalISODate();
+    return today >= FECHA_INICIO && today <= FECHA_FIN;
+  });
 
   if (!visible) return null;
 
   return (
-    <div className="modal-bg">
-      <div className="modal romantic">
+    <div className="modal-bg" role="presentation">
+      <section
+        className="modal romantic"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dedication-title"
+      >
 
-        <h2>Mi amor linda, hermosa, preciosa 💖</h2>
+        <h2 id="dedication-title">Mi amor linda, hermosa, preciosa 💖</h2>
 
         <p>
           Hice esto para ti porque quería escribirte muchas cartas, como en "Diario de una pasión". 
@@ -66,14 +58,14 @@ export default function DedicatoriaModal() {
         </p>
 
 
-        <button
+        <Button
           className="modal-close"
           onClick={() => setVisible(false)}
         >
           Leer tus cartas 💌
-        </button>
+        </Button>
 
-      </div>
+      </section>
     </div>
   );
 }
