@@ -35,8 +35,8 @@ export async function obtenerCartas() {
             fecha: data.fecha ?? "",
             texto: data.texto ?? "",
             titulo: data.titulo ?? `Carta ${data.dia}`,
-            foto: data.foto ?? data.imagen ?? data.imageUrl ?? "",
-            cancion: data.cancion ?? data.song ?? null,
+            foto,
+            cancion,
         };
     });
 }
