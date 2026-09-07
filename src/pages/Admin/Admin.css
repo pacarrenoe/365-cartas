@@ -1,0 +1,6 @@
+.admin-shell { min-height:100vh; padding:28px; background:#fff8f5; }
+.admin-shell__header { max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; color:var(--color-primary); }
+.admin-shell__header div { display:flex; gap:10px; align-items:center; font-size:22px; }
+.admin-shell__header button { padding:10px 18px; border:1px solid var(--color-primary); border-radius:999px; color:var(--color-primary); background:white; cursor:pointer; }
+.admin-shell__welcome { min-height:70vh; display:grid; place-content:center; text-align:center; color:var(--color-primary); }
+.admin-shell__welcome>span { font-size:58px; }.admin-shell__welcome h1 { font-size:48px;font-weight:500; }.admin-shell__welcome p,.admin-shell__welcome small { color:var(--color-text-soft); }

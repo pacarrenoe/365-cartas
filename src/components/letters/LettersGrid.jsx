@@ -5,7 +5,7 @@ import "./LettersGrid.css";
 export default function LettersGrid({
                                         letters,
                                         loading,
-                                        error,
+                                        error, favorites, onToggleFavorite,
                                     }) {
     if (loading) {
         return (
@@ -37,6 +37,8 @@ export default function LettersGrid({
                 <LetterCard
                     key={letter.id}
                     letter={letter}
+                    favorite={favorites.includes(letter.id)}
+                    onToggleFavorite={onToggleFavorite}
                 />
             ))}
         </div>
