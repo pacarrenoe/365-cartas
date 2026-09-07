@@ -45,7 +45,10 @@ export default function LetterCard({letter, favorite, onToggleFavorite}) {
             <p className="letter-card__text">
                 {letter.texto}
             </p>
-            <div className="letter-card__tags"><span>▧</span>{letter.cancion && <span>♫</span>}</div>
+            {(letter.foto || letter.cancion) && <div className="letter-card__tags">
+                {letter.foto && <span aria-label="Incluye fotografía">▧</span>}
+                {letter.cancion && <span aria-label="Incluye canción">♫</span>}
+            </div>}
         </div>
     </article>);
 }
