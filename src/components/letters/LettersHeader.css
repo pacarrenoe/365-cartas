@@ -1,0 +1,22 @@
+.letters-header {
+    flex-shrink: 0;
+}
+
+.letters-header__title {
+    color: var(--color-primary);
+
+    font-size: clamp(32px, 3vw, 44px);
+    font-weight: 500;
+
+    line-height: 1;
+    letter-spacing: -0.035em;
+}
+
+.letters-header__subtitle {
+    margin-top: 6px;
+
+    color: var(--color-text-soft);
+
+    font-size: 15px;
+    line-height: 1.3;
+}

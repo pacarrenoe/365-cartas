@@ -1,0 +1,6 @@
+.letters-pagination { margin-top:28px; display:flex; align-items:center; justify-content:center; gap:7px; }
+.letters-pagination__item { display:flex; align-items:center; gap:7px; }
+.letters-pagination i { color:#9a7d79; font-style:normal; }
+.letters-pagination button { width:38px; height:38px; border:1px solid var(--color-border); border-radius:50%; color:var(--color-primary); background:#fffdfc; cursor:pointer; transition:all 180ms ease; }
+.letters-pagination button:hover:not(:disabled), .letters-pagination button.is-active { color:#fff; background:var(--color-primary); transform:translateY(-2px); box-shadow:0 5px 14px rgba(148,31,40,.2); }
+.letters-pagination button:disabled { opacity:.35; cursor:not-allowed; }
