@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { obtenerCartas } from "../services/cartasService";
+import {useEffect, useState} from "react";
+import {obtenerCartas} from "../services/cartasService";
 
 export default function useLetters() {
     const [letters, setLetters] = useState([]);
@@ -40,8 +40,6 @@ export default function useLetters() {
     }, []);
 
     return {
-        letters,
-        loading,
-        error,
+        letters, loading, error,
     };
 }
