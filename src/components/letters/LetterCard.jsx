@@ -20,8 +20,9 @@ function formatDate(dateString) {
     }).format(date);
 }
 
-export default function LetterCard({letter}) {
+export default function LetterCard({letter, favorite, onToggleFavorite}) {
     return (<article className="letter-card">
+        {letter.foto && <img className="letter-card__image" src={letter.foto} alt="" loading="lazy"/>}
         <div className="letter-card__body">
             <div className="letter-card__top">
                 <time
@@ -31,21 +32,20 @@ export default function LetterCard({letter}) {
                     {formatDate(letter.fecha)}
                 </time>
 
-                <span
-                    className="letter-card__heart"
-                    aria-hidden="true"
-                >
-            ♡
-          </span>
+                <button className={`letter-card__heart ${favorite ? "letter-card__heart--active" : ""}`}
+                    onClick={() => onToggleFavorite(letter.id)} aria-label={favorite ? "Quitar de favoritas" : "Agregar a favoritas"}>
+                    {favorite ? "♥" : "♡"}
+                </button>
             </div>
 
             <h3 className="letter-card__title">
-                Carta {letter.dia}
+                {letter.titulo}
             </h3>
 
             <p className="letter-card__text">
                 {letter.texto}
             </p>
+            <div className="letter-card__tags"><span>▧</span>{letter.cancion && <span>♫</span>}</div>
         </div>
     </article>);
 }

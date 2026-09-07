@@ -14,7 +14,10 @@
     transition:
             transform 180ms ease,
             box-shadow 180ms ease;
+    animation: card-in 450ms both;
 }
+@keyframes card-in { from { opacity: 0; transform: translateY(12px); } }
+.letter-card__image { width: 100%; aspect-ratio: 2.05 / 1; object-fit: cover; }
 
 .letter-card:hover {
     transform: translateY(-3px);
@@ -24,7 +27,7 @@
 }
 
 .letter-card__body {
-    min-height: 205px;
+    min-height: 190px;
 
     padding: 17px 17px 20px;
 }
@@ -48,7 +51,12 @@
 
     font-size: 25px;
     line-height: 1;
+    padding: 0; background: transparent; cursor: pointer;
+    transition: transform 180ms ease;
 }
+.letter-card__heart:hover { transform: scale(1.18); }
+.letter-card__heart--active { animation: heart-pop 300ms ease; }
+@keyframes heart-pop { 50% { transform: scale(1.35); } }
 
 .letter-card__title {
     margin-top: 8px;
@@ -76,3 +84,4 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
 }
+.letter-card__tags { margin-top: 14px; display: flex; gap: 22px; color: var(--color-primary); font-size: 18px; }

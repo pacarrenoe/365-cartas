@@ -1,40 +1,13 @@
 import "./LettersFilters.css";
 
 export default function LettersFilters({
-                                           search, onSearchChange,
+                                           search, onSearchChange, activeFilter, onFilterChange,
                                        }) {
+    const filters = [["all", "Todas"], ["photos", "Con fotos"], ["songs", "Con canciones"], ["favorites", "Mis favoritas"]];
     return (<div className="letters-filters">
         <div className="letters-filters__options">
-            <button
-                type="button"
-                className="letters-filters__button letters-filters__button--active"
-            >
-                Todas
-            </button>
-
-            <button
-                type="button"
-                className="letters-filters__button"
-                disabled
-            >
-                Con fotos
-            </button>
-
-            <button
-                type="button"
-                className="letters-filters__button"
-                disabled
-            >
-                Con canciones
-            </button>
-
-            <button
-                type="button"
-                className="letters-filters__button"
-                disabled
-            >
-                Mis favoritas
-            </button>
+            {filters.map(([value, label]) => <button key={value} type="button" onClick={() => onFilterChange(value)}
+                className={`letters-filters__button ${activeFilter === value ? "letters-filters__button--active" : ""}`}>{label}</button>)}
         </div>
 
         <label className="letters-filters__search">

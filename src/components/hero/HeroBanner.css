@@ -2,7 +2,7 @@
     position: relative;
 
     width: 100%;
-    min-height: 330px;
+    min-height: 350px;
 
     overflow: hidden;
 
@@ -38,7 +38,7 @@
             var(--container-width)
     );
 
-    min-height: 330px;
+    min-height: 350px;
 
     margin: 0 auto;
 
@@ -234,7 +234,7 @@
     }
 
     .hero {
-        min-height: 560px;
+        min-height: 520px;
 
         background-position: 58% center;
     }
@@ -250,7 +250,7 @@
     }
 
     .hero__container {
-        min-height: 560px;
+        min-height: 520px;
 
         padding: 28px 0;
 
