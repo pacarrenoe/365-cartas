@@ -1,0 +1,111 @@
+.letters-section {
+    width: 100%;
+
+    padding: 34px 0 80px;
+
+    background: var(--color-background);
+}
+
+.letters-section__container {
+    width: min(
+            calc(100% - (var(--container-padding) * 2)),
+            var(--container-width)
+    );
+
+    margin: 0 auto;
+
+    display: grid;
+
+    /*
+     * Izquierda: cartas
+     * Derecha: canciones / frase / foto
+     */
+    grid-template-columns:
+    minmax(0, 3fr)
+    minmax(260px, 1fr);
+
+    gap: 32px;
+
+    align-items: start;
+}
+
+.letters-section__main {
+    min-width: 0;
+}
+
+.letters-section__top {
+    margin-bottom: 22px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 28px;
+}
+
+/* Contenido complementario del mockup */
+
+.letters-section__complementary {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.letters-section__placeholder {
+    min-height: 170px;
+
+    padding: 24px;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+
+    color: #9d7370;
+
+    background: #fff1ef;
+
+    border-radius: 14px;
+}
+
+.letters-section__placeholder--photo {
+    min-height: 310px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1050px) {
+    .letters-section__container {
+        grid-template-columns:
+      minmax(0, 2fr)
+      minmax(230px, 0.8fr);
+
+        gap: 24px;
+    }
+
+    .letters-section__top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 780px) {
+    .letters-section {
+        padding-top: 26px;
+    }
+
+    .letters-section__container {
+        display: block;
+    }
+
+    .letters-section__complementary {
+        margin-top: 32px;
+    }
+}

@@ -1,28 +1,21 @@
 import {
-  collection,
-  query,
-  orderBy,
-  getDocs
+    collection, getDocs, orderBy, query,
 } from "firebase/firestore";
 
-import { db } from "../firebase";
+import {db} from "../firebase";
+
+const COLLECTION_NAME = "cartas";
 
 export async function obtenerCartas() {
-  const q = query(
-    collection(db, "cartas"),
-    orderBy("fecha", "desc") // campo lógico
-  );
+    const cartasQuery = query(collection(db, COLLECTION_NAME), orderBy("dia", "asc"));
 
-  const snap = await getDocs(q);
+    const snapshot = await getDocs(cartasQuery);
 
-  return snap.docs.map(doc => {
-    const data = doc.data();
+    return snapshot.docs.map((document) => {
+        const data = document.data();
 
-    return {
-      id: doc.id,
-      fecha: String(data.fecha).slice(0, 10),
-      dia: Number(data.dia),
-      texto: data.texto
-    };
-  });
+        return {
+            id: document.id, dia: Number(data.dia), fecha: data.fecha ?? "", texto: data.texto ?? "",
+        };
+    });
 }

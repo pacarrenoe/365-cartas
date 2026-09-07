@@ -1,8 +1,5 @@
-import Landing from "./pages/Landing";
-import Admin from "./pages/Admin";
+import Landing from "./pages/Landing/Landing";
 
 export default function App() {
-  const isAdmin = window.location.pathname.startsWith("/admin");
-
-  return isAdmin ? <Admin /> : <Landing />;
+  return <Landing />;
 }
