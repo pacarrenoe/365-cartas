@@ -35,17 +35,15 @@
     transition: color 160ms ease,
     background 160ms ease;
 }
+.letters-filters__button span { margin-left:6px; opacity:.65; font-size:10px; }
 
 .letters-filters__button--active {
     color: white;
 
     background: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(148,31,40,.18);
 }
-
-.letters-filters__button:disabled {
-    opacity: 0.75;
-    cursor: default;
-}
+.letters-filters__button:hover:not(.letters-filters__button--active) { color:var(--color-primary); background:#fff8f6; }
 
 .letters-filters__search {
     width: 36px;
@@ -109,6 +107,7 @@
         width: 100%;
 
         overflow-x: auto;
+        scrollbar-width: none;
     }
 
     .letters-filters__button {
