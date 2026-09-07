@@ -1,7 +1,7 @@
 .letters-section {
     width: 100%;
 
-    padding: 34px 0 80px;
+    padding: 30px 0 80px;
 
     background: var(--color-background);
 }
@@ -20,9 +20,7 @@
      * Izquierda: cartas
      * Derecha: canciones / frase / foto
      */
-    grid-template-columns:
-    minmax(0, 3fr)
-    minmax(260px, 1fr);
+    grid-template-columns: minmax(0, 3fr) minmax(280px, 1fr);
 
     gap: 32px;
 
@@ -32,6 +30,7 @@
 .letters-section__main {
     min-width: 0;
 }
+.letters-section__results { margin-top:16px; color:#846b67; font-size:12px; text-align:center; }
 
 .letters-section__top {
     margin-bottom: 22px;
@@ -52,26 +51,22 @@
     gap: 18px;
 }
 
-.letters-section__placeholder {
-    min-height: 170px;
-
-    padding: 24px;
-
-    display: grid;
-    place-items: center;
-
-    text-align: center;
-
-    color: #9d7370;
-
-    background: #fff1ef;
-
-    border-radius: 14px;
-}
-
-.letters-section__placeholder--photo {
-    min-height: 310px;
-}
+.music-card, .quote-card { background: linear-gradient(135deg,#fff4f1,#fde4e1); border-radius: 14px; padding: 20px; color: var(--color-primary); }
+.music-card__heading { display:flex; gap:12px; align-items:center; }
+.music-card__heading>span { font-size:38px; }
+.music-card h3 { font-size:20px; }.music-card p,.music-card small { color:#725552; font-size:12px; display:block; }
+.music-card__player { margin-top:16px; padding:12px; background:#fffaf8; border-radius:10px; display:grid; grid-template-columns:58px 1fr; gap:12px; align-items:center; }
+.music-card__cover { width:58px;height:58px;display:grid;place-items:center;background:#dca096;border-radius:7px;font-size:28px; }
+.music-card__bar { height:3px;background:#decac7;margin-top:13px;border-radius:4px; }
+.music-card__audio { width:100%; height:40px; margin:12px 0; accent-color:var(--color-primary); }
+.music-card__empty { margin:12px 0; padding:10px; text-align:center; border-radius:8px; background:rgba(255,255,255,.55); }
+.music-card__all { width:100%; height:42px; color:var(--color-primary);background:transparent;border:1px solid var(--color-primary);border-radius:9px;cursor:pointer; }
+.music-card__cover { background-position:center; background-size:cover; }
+.quote-card { margin:0; min-height:170px; display:grid;place-items:center;text-align:center;font-size:19px;line-height:1.4; }
+.quote-card span { font-size:42px; height:24px; }.quote-card b { font-size:28px; }
+.featured-card { position:relative;border-radius:12px;overflow:hidden;min-height:310px;background:#ecd0c8; }
+.featured-card img { width:100%;height:100%;object-fit:cover;position:absolute;inset:0; }
+.featured-card span { position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:#592f2d;font-family:var(--font-handwritten);font-size:20px;transform:rotate(-4deg);text-shadow:0 1px #fff; }
 
 /* =========================
    TABLET
@@ -108,4 +103,5 @@
     .letters-section__complementary {
         margin-top: 32px;
     }
+    .letters-section__complementary { display:grid;grid-template-columns:1fr; }
 }
