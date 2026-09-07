@@ -1,0 +1,125 @@
+.letters-filters {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.letters-filters__options {
+    padding: 4px;
+
+    display: flex;
+    align-items: center;
+
+    background: #f8efec;
+
+    border-radius: 999px;
+}
+
+.letters-filters__button {
+    height: 32px;
+
+    padding: 0 16px;
+
+    color: #594542;
+
+    background: transparent;
+
+    border: 0;
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: color 160ms ease,
+    background 160ms ease;
+}
+.letters-filters__button span { margin-left:6px; opacity:.65; font-size:10px; }
+
+.letters-filters__button--active {
+    color: white;
+
+    background: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(148,31,40,.18);
+}
+.letters-filters__button:hover:not(.letters-filters__button--active) { color:var(--color-primary); background:#fff8f6; }
+
+.letters-filters__search {
+    width: 36px;
+    height: 36px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: #fffaf8;
+
+    border: 1px solid rgba(90, 58, 54, 0.12);
+    border-radius: 999px;
+
+    transition: width 220ms ease;
+}
+
+.letters-filters__search:focus-within {
+    width: 160px;
+}
+
+.letters-filters__search-icon {
+    width: 36px;
+
+    flex-shrink: 0;
+
+    text-align: center;
+
+    color: #3c2b29;
+
+    font-size: 20px;
+}
+
+.letters-filters__search input {
+    width: 115px;
+
+    padding-right: 12px;
+
+    border: 0;
+    outline: 0;
+
+    color: var(--color-text);
+
+    background: transparent;
+
+    font-size: 12px;
+}
+
+@media (max-width: 700px) {
+    .letters-filters {
+        width: 100%;
+
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .letters-filters__options {
+        width: 100%;
+
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .letters-filters__button {
+        flex-shrink: 0;
+    }
+
+    .letters-filters__search,
+    .letters-filters__search:focus-within {
+        width: 100%;
+    }
+
+    .letters-filters__search input {
+        width: 100%;
+    }
+}

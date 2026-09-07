@@ -14,6 +14,20 @@ export async function login(email, password) {
     }
   );
 
-  if (!res.ok) throw new Error("Login inválido");
+  if (!res.ok) {
+    const data = await res.json().catch(() => null);
+    const code = data?.error?.message;
+
+    if (code === "INVALID_LOGIN_CREDENTIALS" || code === "EMAIL_NOT_FOUND" || code === "INVALID_PASSWORD") {
+      throw new Error("El correo o la contraseña no son correctos.");
+    }
+
+    if (code === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+      throw new Error("Demasiados intentos. Espera un momento antes de volver a intentar.");
+    }
+
+    throw new Error("No pudimos iniciar sesión. Inténtalo nuevamente.");
+  }
+
   return res.json(); // idToken, refreshToken, expiresIn
 }

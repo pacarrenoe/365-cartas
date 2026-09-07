@@ -1,28 +1,42 @@
 import {
-  collection,
-  query,
-  orderBy,
-  getDocs
+    collection, getDocs, orderBy, query,
 } from "firebase/firestore";
 
-import { db } from "../firebase";
+import {db} from "../firebase";
+
+const COLLECTION_NAME = "cartas";
+
+function firstValue(...values) {
+    return values.find((value) => typeof value === "string" && value.trim())?.trim() ?? "";
+}
 
 export async function obtenerCartas() {
-  const q = query(
-    collection(db, "cartas"),
-    orderBy("fecha", "desc") // campo lógico
-  );
+    const cartasQuery = query(collection(db, COLLECTION_NAME), orderBy("dia", "desc"));
 
-  const snap = await getDocs(q);
+    const snapshot = await getDocs(cartasQuery);
 
-  return snap.docs.map(doc => {
-    const data = doc.data();
+    return snapshot.docs.map((document) => {
+        const data = document.data();
 
-    return {
-      id: doc.id,
-      fecha: String(data.fecha).slice(0, 10),
-      dia: Number(data.dia),
-      texto: data.texto
-    };
-  });
+        const foto = firstValue(data.foto, data.imagen, data.imageUrl, data.imagenUrl, data.urlImagen);
+        const rawSong = data.cancion ?? data.song ?? data.musica ?? null;
+        const cancion = typeof rawSong === "string"
+            ? {titulo: "Nuestra canción", artista: "", url: rawSong}
+            : rawSong && {
+                titulo: rawSong.titulo ?? rawSong.title ?? "Nuestra canción",
+                artista: rawSong.artista ?? rawSong.artist ?? "",
+                url: firstValue(rawSong.url, rawSong.src, rawSong.audioUrl),
+                portada: firstValue(rawSong.portada, rawSong.cover, rawSong.image),
+            };
+
+        return {
+            id: document.id,
+            dia: Number(data.dia),
+            fecha: data.fecha ?? "",
+            texto: data.texto ?? "",
+            titulo: data.titulo ?? `Carta ${data.dia}`,
+            foto: data.foto ?? data.imagen ?? data.imageUrl ?? "",
+            cancion: data.cancion ?? data.song ?? null,
+        };
+    });
 }
